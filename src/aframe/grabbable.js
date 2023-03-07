@@ -1,7 +1,8 @@
 AFRAME.registerComponent('grabbable', {
-    schema: {
-      target: {type: 'selector', default: '#camera-rig'},
-    },
+  schema: {
+    target: {type: 'selector', default: '#hand-right'},
+    auto: {type: 'boolean', default: false}
+  },
     init: function () {
       this.initialPos = {...this.el.object3D.position};
       this.targetPos = new THREE.Vector3();

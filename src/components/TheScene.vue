@@ -31,6 +31,9 @@
   const textJack=ref(true)
   const speechJack=ref(true)
   const textDepart=ref(false)
+  const compassGrabbed=ref(false)
+  const naviGrabbed=ref(false)
+
 
   function manageClick(){
  showText.value = true;
@@ -79,12 +82,27 @@ function ClickNavi(evt){
   const navi = evt.target;
    // navi.components['sound'].stopSound();
    navi.removeAttribute('sound');
+   navi.setAttribute("grabbable", "target: #hand-right; auto: true");
+  naviGrabbed.value=true;
   // navi.emit('say-hello');
+}
+
+function ClickCompass(evt){
+  const compass2 = evt.target;
+   compass2.setAttribute("grabbable", "target: #hand-right; auto: true");
+  compassGrabbed.value=true;
+
 }
 
 function OpenTextLink() {
   showTextLink.value=true;
   showSpeechBubbleLink.value=true;
+}
+
+function CloseTextLink() {
+  showTextLink.value=false;
+  showTextLinkSuite.value=false;
+  showSpeechBubbleLink.value=false;
 }
 
 function ClickSuite() {
@@ -93,26 +111,22 @@ function ClickSuite() {
 }
 
 function clickRemove(){
-  console.log("sdasdasd")
   const navi2 = document.querySelector("#naviVraie");
   console.log(navi2)
-  navi2.removeAttribute("grabbable");
+  if (naviGrabbed.value) {
+    navi2.removeAttribute("grabbable");
   navi2.setAttribute("position", "-3 0 -44");
+  }
+
  
 }
 
 function clickRemoveCompass(){
-  console.log("sdasdasd")
   const compass = document.querySelector("#compassPirate");
-  console.log(compass)
-  compass.removeAttribute("grabbable");
+  if (compassGrabbed.value) {
+    compass.removeAttribute("grabbable");
   compass.setAttribute("position", "148.7 100.2 -67.5");
- 
-}
-
-function OpenTextJack() {
-  textJack.value=true;
-  speechJack.value=true;
+  }
 }
 
 function FermerTexteJack(){
@@ -154,6 +168,8 @@ function FermerTexteJack(){
       <a-asset-item id="Hey" response-type="arraybuffer" src="assets/Hey.mp3" preload="auto"></a-asset-item>
       <a-asset-item id="kass" response-type="arraybuffer" src="assets/Kass_Theme.mp3" preload="auto"></a-asset-item>
       <a-asset-item id="linkScream" response-type="arraybuffer" src="assets/LinkScream.mp3" preload="auto"></a-asset-item>
+      <a-asset-item id="OpenChest" response-type="arraybuffer" src="assets/OpenChest.mp3" preload="auto"></a-asset-item>
+      <a-asset-item id="Glass" response-type="arraybuffer" src="assets/Glass.mp3" preload="auto"></a-asset-item>
       <a-asset-item  id="speech" src="assets/speech_bubble.glb"></a-asset-item>
       <a-asset-item  id="speech2" src="assets/speech_bubble.glb"></a-asset-item>
       <a-asset-item  id="speech3" src="assets/speech_bubble.glb"></a-asset-item>
@@ -169,6 +185,7 @@ function FermerTexteJack(){
     <a-asset-item  id="map_zelda" src="assets/legend_of_zelda.glb"></a-asset-item>
     <a-asset-item  id="jar" src="assets/jar.glb"></a-asset-item>
     <a-asset-item  id="chest" src="assets/chest.glb"></a-asset-item>
+    <a-asset-item  id="arrow" src="assets/arrow.glb"></a-asset-item>
     </a-assets>
 
  
@@ -216,6 +233,18 @@ function FermerTexteJack(){
 
     <a-entity 
       v-if="allAssetsLoaded"
+      gltf-model="#arrow"
+      rotation="270 0 0"
+      position=" -0.081 4.578 -11.273"
+      scale="0.2 0.2 0.2"
+     
+      
+    >  
+    </a-entity>
+
+
+    <a-entity 
+      v-if="allAssetsLoaded"
       gltf-model="#link"
       rotation="0 45 0"
       position="-4 0.1 -43"
@@ -242,9 +271,9 @@ function FermerTexteJack(){
     <a-text
     v-if="showTextLinkSuite"
         rotation="0 45 0"
-        position=" -4.491 2.860 -42.203"
+        position=" -4.591 2.860 -42"
         scale="0.6 0.8 0.6"
-        value="Le bocal est juste la !
+        value="Elle se trouve ma maison et le bocal est juste la !
         hate toi s'il te plait elle me tape sur les nerfs"
         color="black" 
         clickable
@@ -252,10 +281,12 @@ function FermerTexteJack(){
     >
     </a-text>
 
-    <a-box id="boxLink" color="red" depth="2" height="3" width="15" position="0 1.6 -31.507" visible="false"
-    emit-when-near=" event: showTextLink;" 
+    <a-box id="boxLink" color="red" depth="20" height="3" width="15" position="-3.010 1.6 -38.769" visible="false"
+    emit-when-near=" event: showTextLink; eventFar: hideTextLink" 
     sound="src: #linkScream;  on:showTextLink;  volume: 1; refDistance: 1; rolloffFactor: 1;"  
     @showTextLink=" OpenTextLink()"
+    @hideTextLink=" CloseTextLink()"
+
     ></a-box>
 
     <a-entity
@@ -278,6 +309,7 @@ function FermerTexteJack(){
       scale="1 1 1"
       clickable
       @click="clickRemove()"
+      sound="src: #Glass; on:click; volume: 1; refDistance: 1; rolloffFactor: 1 "
       
     >  
     </a-entity>
@@ -348,7 +380,7 @@ function FermerTexteJack(){
     >
     </a-text>
 
-    <a-box color="red" depth="2" height="3" width="5" position="0 1.6 -14.827" visible="false"
+    <a-box color="red" depth="15" height="3" width="15" position="0 1.6 -10.827" visible="false"
     emit-when-near=" event: showTextValue;"
     sound="src: #kass; loop:true; on: showTextValue;  volume: 0.1; refDistance: 5; rolloffFactor: 1 "  
     @showTextValue=" OpenIntro()"
@@ -485,7 +517,7 @@ function FermerTexteJack(){
     </a-entity>
 
 
-    <a-box id="boxJack" color="red" depth="5" height="3" width="5" position="146.042 99.964 -72.050" visible="true"
+    <a-box id="boxJack" color="red" depth="5" height="3" width="5" position="146.042 99.964 -72.050" visible="false"
     emit-when-near=" event: showTextJack;" 
     @showTextJack=" OpenTextJack()"
     ></a-box>
@@ -534,6 +566,7 @@ function FermerTexteJack(){
       scale="0.2 0.2 0.2"
       clickable
       grabbable
+      @click="ClickCompass()"
     >  
     </a-entity>
 
@@ -546,6 +579,7 @@ function FermerTexteJack(){
       scale="0.01 0.01 0.01"
       clickable
       @click="clickRemoveCompass()"
+      sound="src: #OpenChest; on:click; volume: 1; refDistance: 1; rolloffFactor: 1 "
       
     >  
     </a-entity>

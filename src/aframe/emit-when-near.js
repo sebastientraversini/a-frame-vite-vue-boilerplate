@@ -3,7 +3,7 @@ AFRAME.registerComponent('emit-when-near', {
   
   schema: {
     target: {type: 'selector', default: '[camera]'},
-    distance: {type: 'number', default: 1},
+    distance: {type: 'number', default: 8},
     event: {type: 'string', default: 'click'},
     eventFar: {type: 'string', default: 'unclick'},
     throttle: {type: 'number', default: 100},

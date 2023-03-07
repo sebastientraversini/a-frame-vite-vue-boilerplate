@@ -24,7 +24,7 @@
 
 
     movement-controls="camera: #head; speed:1;"
-    disable-in-vr="component: movement-controls;"
+    
     :position="position"
   > 
 
@@ -57,6 +57,7 @@
           teleportOrigin: #head;
           collisionEntities: [data-role='nav-mesh'];
           snapTurn: false;
+          defaultPlainSize: 1000;
         "
       ></a-entity>
 
