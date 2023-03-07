@@ -3,14 +3,30 @@
   import '../aframe/hide-in-vr';
   import '../aframe/simple-navmesh-constraint';
   import '../aframe/blink-controls';
+  import '../aframe/emit-when-near';
+  import '../aframe/event-set';
+  import '../aframe/clickable';
+  import '../aframe/grabbable';
+  import '../aframe/animation-mixer';
+  import { ref } from 'vue';
+
+  const position = ref('0 0 0');
+
 </script>
 
 <template>
   <a-entity
     id="camera-rig"
-    movement-controls="camera: #head;"
+
+@travelToPirates= "$event=>position='3 100 -53'"
+@travelToLinkHouse= "$event=>position='1 -95 -35'"
+
+
+
+    movement-controls="camera: #head; speed:1;"
     disable-in-vr="component: movement-controls;"
-  >
+    :position="position"
+  > 
 
       <a-entity
         id="head"
@@ -19,16 +35,18 @@
         disable-in-vr="component: simple-navmesh-constraint;"
         camera
         position="0 1.65 0"
+        
       >
-        <a-entity
-          geometry="primitive: circle; radius: 0.0003;"
-          material="shader: flat; color: white;"
-          cursor
-          raycaster="far: 2; objects: [clickable]; showLine: false;"
-          position="0 0 -0.1"
-          disable-in-vr="component: raycaster; disableInAR: false;"
-          hide-in-vr="hideInAR: false"
-        ></a-entity>
+          <a-entity
+          id="reticle"
+            geometry="primitive: circle; radius: 0.001;"
+            material="shader: flat; color: white;"
+            cursor
+            raycaster="far: 2; objects: [clickable]; showLine: false;"
+            position="0 0 -0.1"
+            disable-in-vr="component: raycaster; disableInAR: false;"
+            hide-in-vr="hideInAR: false"
+          ></a-entity>
       </a-entity>
 
       <a-entity

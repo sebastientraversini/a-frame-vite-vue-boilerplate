@@ -3,6 +3,7 @@
   import TheOnboarding from './components/TheOnboarding.vue';
   import TheOverlay from './components/TheOverlay.vue';
   import TheScene from './components/TheScene.vue';
+ /*  import MaScene from './components/MaScene.vue'; */
 
   const scale = ref(1);
   const loaded = ref(false);

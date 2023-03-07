@@ -1,4 +1,6 @@
 AFRAME.registerComponent('emit-when-near', {
+  multiple: true,
+  
   schema: {
     target: {type: 'selector', default: '[camera]'},
     distance: {type: 'number', default: 1},
