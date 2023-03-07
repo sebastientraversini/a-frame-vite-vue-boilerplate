@@ -11,6 +11,7 @@
   import '../aframe/grabbable';
   import '../aframe/animation-mixer';
   import '../aframe/emit-when-near';
+  import '../aframe/teleport-camera-rig';
 
   defineProps({
     scale: Number,
@@ -66,17 +67,6 @@
  }
   }
 
-function ClickJack(){
-  document.querySelector("#camera-rig").setAttribute("position", "-0.068 0 -32.889")
-  document.querySelector("#camera-rig").setAttribute("rotation", "0 140 0")
-  speechJack.value=false;
-  textDepart.value=false;
-}
-
-function ClickToJack(){
-  document.querySelector("#camera-rig").setAttribute("position", "147.042 99.964 -70.050")
-  document.querySelector("#camera-rig").setAttribute("rotation", "0 290 0")
-}
 
 function ClickNavi(evt){
   const navi = evt.target;
@@ -88,8 +78,8 @@ function ClickNavi(evt){
 }
 
 function ClickCompass(evt){
-  const compass2 = evt.target;
-   compass2.setAttribute("grabbable", "target: #hand-right; auto: true");
+  const compassMain = document.querySelector("#compassPirate")
+   compassMain.setAttribute("grabbable", "target: #hand-right; auto: true");
   compassGrabbed.value=true;
 
 }
@@ -125,7 +115,7 @@ function clickRemoveCompass(){
   const compass = document.querySelector("#compassPirate");
   if (compassGrabbed.value) {
     compass.removeAttribute("grabbable");
-  compass.setAttribute("position", "148.7 100.2 -67.5");
+    compass.setAttribute("position", "148.7 -200 -67.5");
   }
 }
 
@@ -133,6 +123,16 @@ function FermerTexteJack(){
   textJack.value=false;
   textDepart.value=true;
 }
+
+ /* function switchView(scene) {
+    console.log(4352523)
+    view.value = scene
+    document.querySelector("#head").setAttribute("simple-navmesh-constraint", "enabled", false);
+    setTimeout(() => {
+      document.querySelector("#head").setAttribute("simple-navmesh-constraint", "enabled", true);
+    }, 500
+    )
+  } */
 
 
 </script>
@@ -174,7 +174,9 @@ function FermerTexteJack(){
       <a-asset-item  id="speech2" src="assets/speech_bubble.glb"></a-asset-item>
       <a-asset-item  id="speech3" src="assets/speech_bubble.glb"></a-asset-item>
       <a-asset-item  id="speech4" src="assets/speech_bubble.glb"></a-asset-item>
+      <a-asset-item  id="speech5" src="assets/speech_bubble.glb"></a-asset-item>
       <a-asset-item  id="kassPerso" src="assets/kass.glb"></a-asset-item>
+      <a-asset-item  id="door1" src="assets/door_wood.glb"></a-asset-item>
       <a-asset-item  id="door2" src="assets/door_wood.glb"></a-asset-item>
       <a-asset-item  id="map2" src="assets/pirate_map.glb"></a-asset-item>
     <a-asset-item  id="Jack" src="assets/Jack.glb"></a-asset-item>
@@ -273,7 +275,7 @@ function FermerTexteJack(){
         rotation="0 45 0"
         position=" -4.591 2.860 -42"
         scale="0.6 0.8 0.6"
-        value="Elle se trouve ma maison et le bocal est juste la !
+        value="Elle est dans ma maison et le bocal est juste la !
         hate toi s'il te plait elle me tape sur les nerfs"
         color="black" 
         clickable
@@ -315,7 +317,7 @@ function FermerTexteJack(){
     </a-entity>
 
 
-    <a-entity
+<!--     <a-entity
         id="hand-left"
         hand-controls="hand: left"        
       ></a-entity>
@@ -324,7 +326,7 @@ function FermerTexteJack(){
         id="hand-right"
         hand-controls="hand: right"        
     >
-    </a-entity>
+    </a-entity> -->
 
 
     <a-entity
@@ -358,7 +360,6 @@ function FermerTexteJack(){
             rotation="270.000 90.000 90.000"
             position="3.957 5.700 -18.727"
             scale="0.500 0.100 0.200"   
-            
             clickable
             @click="ClickIntroSuite()"
           >  
@@ -400,11 +401,12 @@ function FermerTexteJack(){
     <a-entity
     v-if="allAssetsLoaded"
     id="travelToPirates"
-      gltf-model="#door2"
+      gltf-model="#door1"
       rotation="00 -77 00"
       position="9.7 0 -39.85"
       scale="1 0.8 1"    
-      emit-when-near="target: #camera-rig; distance: 1; event: travelToPirates;"
+      clickable
+      teleport-camera-rig="x: 4; y: -200; z: -53;"
     >  
     </a-entity>
 
@@ -435,7 +437,8 @@ function FermerTexteJack(){
       rotation="00 -30 00"
       position="2.72 0 -57.5"
       scale="1 0.8 1"    
-   emit-when-near ="target: #camera-rig; distance: 1; event: travelToLinkHouse;"
+      clickable
+      teleport-camera-rig="x: 2; y:-95.5; z: -38;"
     >   
     </a-entity>
 
@@ -465,7 +468,7 @@ function FermerTexteJack(){
       v-if="allAssetsLoaded"
       gltf-model="#map2"
       rotation="0 102 0"
-      position="3 100 -53"
+      position="3 -200 -53"
       scale="0.002 0.002 0.002"
     >  
     </a-entity>
@@ -474,17 +477,17 @@ function FermerTexteJack(){
       v-if="allAssetsLoaded"
       gltf-model="#Jack"
       rotation="0 190 0"
-      position="147.042 99.964 -67.050"
+      position="147.042 -200 -67.050"
       scale="0.18 0.18 0.18"
       clickable
-      @click="ClickJack()"   
+      teleport-camera-rig="x:-0.068; y:0; z:-32.889;"
     >  
     </a-entity>
 
     <a-text
     v-if="textJack"
         rotation="0 -110 0"
-        position="148 101.7 -70.1"
+        position="148 -198.3 -70.1"
         scale=" 0.4 0.4 0.4"
         value="toux doux moussaillon, pourrais tu deposer ma 
         boussole dans ce beau coffre a mes pieds ?"
@@ -496,20 +499,20 @@ function FermerTexteJack(){
     <a-text
     v-if="textDepart"
         rotation="0 -110 0"
-        position="148 101.7 -70.1"
+        position="148 -198.3 -70.1"
         scale=" 0.4 0.4 0.4"
         value="Des que tu m'auras rendu ma boussole,
         tu pourras partir en me cliquant dessus"
         color="black" 
-        @click="ClickJack()"
+        teleport-camera-rig="x:-0.068; y:0; z:-32.889;"
     >
     </a-text>
 
     <a-entity
-    v-if="speechJack"
-      gltf-model="#speech4"
+    v-if="allAssetsLoaded"
+      gltf-model="#speech5"
       rotation="268.000 160 90.000"
-      position="149 103.35 -71.7"
+      position="149 -196.65 -71.7"
       scale="0.40 0.200 0.090"   
       clickable
       @click="FermerTexteJack()"
@@ -517,7 +520,7 @@ function FermerTexteJack(){
     </a-entity>
 
 
-    <a-box id="boxJack" color="red" depth="5" height="3" width="5" position="146.042 99.964 -72.050" visible="false"
+    <a-box id="boxJack" color="red" depth="5" height="3" width="5" position="146.042 -200.036 -72.050" visible="false"
     emit-when-near=" event: showTextJack;" 
     @showTextJack=" OpenTextJack()"
     ></a-box>
@@ -527,30 +530,30 @@ function FermerTexteJack(){
       v-if="allAssetsLoaded"
       gltf-model="#sign"
       rotation="0 -45 0"
-      position="18 101 -54"
+      position="18 -199 -54"
       scale="1 1 1"
       clickable
-      @click="$event =>ClickToJack()"
+      teleport-camera-rig="x:147.042; y:-200,036; z:-70.050;"
     >  
     </a-entity>
 
     <a-text
     v-if="allAssetsLoaded"
         rotation="0 -130 0"
-        position="19 101.9 -55.2"
+        position="19 -198.1 -55.2"
         scale="0.4 0.4 0.4"
         value="Cliquez pour aller vers jack 
         Sparrow"
         color="white" 
         clickable
-      @click="$event =>ClickToJack()"
+      teleport-camera-rig="x:147.042; y:-200,036; z:-70.050;"
     >
     </a-text>
 
     <a-text
     v-if="allAssetsLoaded"
         rotation="0 -130 0"
-        position="19 101.5 -55.2"
+        position="19 -198.4 -55.2"
         scale="0.4 0.4 0.4"
         value="Amenez lui sa boussole"
         color="white" 
@@ -562,11 +565,12 @@ function FermerTexteJack(){
       v-if="allAssetsLoaded"
       gltf-model="#compass"
       rotation="0 -125 0"
-      position="18 100.3 -55"
+      position="18 -199.7 -55"
       scale="0.2 0.2 0.2"
       clickable
-      grabbable
       @click="ClickCompass()"
+      grabbable
+      
     >  
     </a-entity>
 
@@ -575,7 +579,7 @@ function FermerTexteJack(){
       v-if="allAssetsLoaded"
       gltf-model="#chest"
       rotation="0 220 0"
-      position="148.7 100.2 -67.5"
+      position="148.7 -199.8 -67.5"
       scale="0.01 0.01 0.01"
       clickable
       @click="clickRemoveCompass()"
@@ -621,7 +625,7 @@ function FermerTexteJack(){
         value="Retour"
         color="black" 
         clickable
-        @click="ClickJack()"
+        teleport-camera-rig="x:-0.068; y:0; z:-32.889;"
     >
     </a-text>
 
@@ -632,9 +636,11 @@ function FermerTexteJack(){
       position="-5 -92 -36.5"
       scale="0.20 0.200 0.090"  
       clickable
-        @click="ClickJack()" 
+        teleport-camera-rig="x:-0.068; y:0; z:-32.889;"
     >  
     </a-entity>
+
+    
 
     <TheNavMesh />
 
