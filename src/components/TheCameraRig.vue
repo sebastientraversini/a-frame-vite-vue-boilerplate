@@ -51,6 +51,7 @@
           teleportOrigin: #head;
           collisionEntities: [data-role='nav-mesh'];
           snapTurn: false;"
+          
       ></a-entity>
 
       <a-entity

@@ -133,10 +133,10 @@ function stopKnight(){
 
 function TPTimeOut(){
   console.log("test")
-  document.querySelector("#hand-left").setAttribute("blink-controls", "enabled", false);
+  document.querySelector("#hand-left").setAttribute("blink-controls", "disable", true);
   setTimeout(() => {
-    console.log("test222")
-    document.querySelector("#hand-left").setAttribute("blink-controls", "enabled", true);
+    console.log("test222")  
+    document.querySelector("#hand-left").setAttribute("blink-controls", "disable", false);
   }, 500);
 }
 
@@ -555,7 +555,7 @@ function TPTimeOut(){
 
     <a-box id="boxJack" color="red" depth="5" height="3" width="5" position="146.042 -200.036 -72.050" visible="false"
     emit-when-near=" event: showTextJack;" 
-    @showTextJack=" OpenTextJack()"
+    
     ></a-box>
 
 

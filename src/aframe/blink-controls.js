@@ -33,6 +33,8 @@ SOFTWARE.
 // Removals: Line teleport
 // WARNING: Super early! Currently only tested with Oculus Touch controllers
 
+
+
 AFRAME.registerGeometry('prism', {
   schema: {
     depth: { default: 1, min: 0 },
@@ -99,7 +101,8 @@ AFRAME.registerComponent('blink-controls', {
     missOpacity: { default: 0.8 },
     hitOpacity: { default: 0.8 },
     snapTurn: { default: true },
-    rotateOnTeleport: { default: true }
+    rotateOnTeleport: { default: true },
+    disable:{default:false}
   },
 
   init: function () {
