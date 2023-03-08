@@ -426,7 +426,7 @@ function stopKnight(){
       position="9.7 0 -39.85"
       scale="1 0.8 1"    
       clickable
-      teleport-camera-rig="x: 8; y: -199.9; z: -54;"
+      teleport-camera-rig="x: 8; y: -200; z: -54;"
     >  
     </a-entity>
 
@@ -500,7 +500,7 @@ function stopKnight(){
       position="147.042 -200 -67.050"
       scale="0.18 0.18 0.18"
       clickable
-      teleport-camera-rig="x:-0.068; y:0; z:-32.889;"
+      teleport-camera-rig="x:-0.068; y:0.01; z:-32.889;"
     >  
     </a-entity>
 
@@ -524,7 +524,7 @@ function stopKnight(){
         value="Des que tu m'auras rendu ma boussole,
         tu pourras partir en me cliquant dessus"
         color="black" 
-        teleport-camera-rig="x:-0.068; y:0; z:-32.889;"
+        teleport-camera-rig="x:-0.068; y:0.01; z:-32.889;"
     >
     </a-text>
 
@@ -553,7 +553,7 @@ function stopKnight(){
       position="18 -199 -54"
       scale="1 1 1"
       clickable
-      teleport-camera-rig="x:147.042; y:-200,036; z:-70.050;"
+      teleport-camera-rig="x:147.042; y:-200; z:-70.050;"
     >  
     </a-entity>
 
@@ -566,7 +566,7 @@ function stopKnight(){
         Sparrow"
         color="white" 
         clickable
-      teleport-camera-rig="x:147.042; y:-200,036; z:-70.050;"
+      teleport-camera-rig="x:147.042; y:-200; z:-70.050;"
     >
     </a-text>
 
@@ -645,7 +645,7 @@ function stopKnight(){
         value="Retour"
         color="black" 
         clickable
-        teleport-camera-rig="x:-0.068; y:0; z:-32.889;"
+        teleport-camera-rig="x:-0.068; y:0.01; z:-32.889;"
     >
     </a-text>
 
@@ -656,7 +656,7 @@ function stopKnight(){
       position="-5 -92 -36.5"
       scale="0.20 0.200 0.090"  
       clickable
-        teleport-camera-rig="x:-0.068; y:0; z:-32.889;"
+        teleport-camera-rig="x:-0.068; y:0.01; z:-32.889;"
     >  
     </a-entity>
 
