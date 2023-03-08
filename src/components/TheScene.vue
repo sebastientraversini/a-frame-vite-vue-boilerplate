@@ -188,9 +188,10 @@ function FermerTexteJack(){
     <a-asset-item  id="jar" src="assets/jar.glb"></a-asset-item>
     <a-asset-item  id="chest" src="assets/chest.glb"></a-asset-item>
     <a-asset-item  id="arrow" src="assets/arrow.glb"></a-asset-item>
+    <img id="asky" src="/assets/asky.jpg">
     </a-assets>
 
- 
+    <a-sky src="#asky"></a-sky>
 
     <a-entity
       v-if="allAssetsLoaded"
@@ -499,7 +500,7 @@ function FermerTexteJack(){
     <a-text
     v-if="textDepart"
         rotation="0 -110 0"
-        position="148 -198.3 -70.1"
+        position="148.200 -198.3 -69.531"
         scale=" 0.4 0.4 0.4"
         value="Des que tu m'auras rendu ma boussole,
         tu pourras partir en me cliquant dessus"

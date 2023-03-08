@@ -8,6 +8,7 @@
     material="color: blue"
     visible="true"
   ></a-entity>
+  
   <a-entity
   id="navMeshPirate1"
     geometry="primitive: plane;  height: 3; width: 144.370"
