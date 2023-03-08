@@ -426,7 +426,7 @@ function stopKnight(){
       position="9.7 0 -39.85"
       scale="1 0.8 1"    
       clickable
-      teleport-camera-rig="x: 4; y: -199.9; z: -53;"
+      teleport-camera-rig="x: 8; y: -199.9; z: -54;"
     >  
     </a-entity>
 
