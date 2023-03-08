@@ -137,10 +137,7 @@ function TPTimeOut(){
   setTimeout(() => {
     console.log("test222")  
     document.querySelector("#hand-left").setAttribute("blink-controls", 
-    `cameraRig: #camera-rig;
-      teleportOrigin: #head;
-      collisionEntities: [data-role='nav-mesh'];
-      snapTurn: false;`
+    "cameraRig: #camera-rig; teleportOrigin: #head; collisionEntities: [data-role='nav-mesh']; snapTurn: false;"
       );
   }, 500);
 }
