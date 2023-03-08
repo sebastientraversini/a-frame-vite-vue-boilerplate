@@ -124,7 +124,7 @@ function FermerTexteJack(){
   textDepart.value=true;
 }
 
-function stopKnight(){
+function stopKnight(){  
   const knighty = document.querySelector("#knighty");
   const boxKnighty = document.querySelector("boxknight");
   boxKnighty.components.sound.stopSound();
@@ -190,7 +190,7 @@ function stopKnight(){
     <img id="asky" src="/assets/asky.jpg">
     </a-assets>
 
-    <a-sky src="#asky"></a-sky>
+    <a-sky src="#asky" position="0 0 0"></a-sky>
 
     <a-entity
       v-if="allAssetsLoaded"
