@@ -11,7 +11,7 @@
   <a-entity
   id="navMeshPirate1"
     geometry="primitive: plane;  height: 3; width: 144.370"
-    position="73.846 -200 -67.028"
+    position="73.240 -200 -67.515"
     rotation="-87 11.830 0"
     data-role="nav-mesh"
     material="color: red"
@@ -19,8 +19,8 @@
   ></a-entity>
   <a-entity
   id="navMeshPirate2"
-    geometry="primitive: plane; height: 3; width: 20.000"
-    position="144.696 -200 -75.028"
+    geometry="primitive: plane; height: 3; width: 17.640"
+    position="145.206 -200 -75.028"
     rotation="-87 103.780 0"
     data-role="nav-mesh"
     material="color: brown"
