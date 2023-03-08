@@ -124,15 +124,12 @@ function FermerTexteJack(){
   textDepart.value=true;
 }
 
- /* function switchView(scene) {
-    console.log(4352523)
-    view.value = scene
-    document.querySelector("#head").setAttribute("simple-navmesh-constraint", "enabled", false);
-    setTimeout(() => {
-      document.querySelector("#head").setAttribute("simple-navmesh-constraint", "enabled", true);
-    }, 500
-    )
-  } */
+function stopKnight(){
+  const knighty = document.querySelector("#knighty");
+  const boxKnighty = document.querySelector("boxknight");
+  boxKnighty.components.sound.stopSound();
+  knighty.components.sound.stopSound();
+}
 
 
 </script>
@@ -170,6 +167,7 @@ function FermerTexteJack(){
       <a-asset-item id="linkScream" response-type="arraybuffer" src="assets/LinkScream.mp3" preload="auto"></a-asset-item>
       <a-asset-item id="OpenChest" response-type="arraybuffer" src="assets/OpenChest.mp3" preload="auto"></a-asset-item>
       <a-asset-item id="Glass" response-type="arraybuffer" src="assets/Glass.mp3" preload="auto"></a-asset-item>
+      <a-asset-item id="giberish" response-type="arraybuffer" src="assets/giberish.mp3" preload="auto"></a-asset-item>
       <a-asset-item  id="speech" src="assets/speech_bubble.glb"></a-asset-item>
       <a-asset-item  id="speech2" src="assets/speech_bubble.glb"></a-asset-item>
       <a-asset-item  id="speech3" src="assets/speech_bubble.glb"></a-asset-item>
@@ -188,6 +186,7 @@ function FermerTexteJack(){
     <a-asset-item  id="jar" src="assets/jar.glb"></a-asset-item>
     <a-asset-item  id="chest" src="assets/chest.glb"></a-asset-item>
     <a-asset-item  id="arrow" src="assets/arrow.glb"></a-asset-item>
+    <a-asset-item  id="knight" src="assets/knight.glb"></a-asset-item>
     <img id="asky" src="/assets/asky.jpg">
     </a-assets>
 
@@ -258,6 +257,26 @@ function FermerTexteJack(){
     >  
     </a-entity>
 
+    <a-entity 
+    id="knighty"
+      v-if="allAssetsLoaded"
+      gltf-model="#knight"
+      rotation="0 0 0"
+      position="-2.849 0.010 -72.525"
+      scale="2 2 2"
+      clickable
+      sound="src: #giberish; on: click; volume: 1; refDistance: 1; rolloffFactor: 1;"  
+    >  
+    </a-entity>
+
+    <a-box id="boxknight" color="red" depth="15" height="3" width="10" position="-2.349 1.6 -63.890" visible="false"
+    emit-when-near=" event: Speak; eventFar: stopSpeak"
+    sound="src: #giberish;  on:Speak;  volume: 1; refDistance: 1; rolloffFactor: 1;"  
+    @stopSpeak="stopKnight()"
+
+
+    ></a-box>
+
     <a-text
     v-if="showTextLink"
         rotation="0 45 0"
@@ -284,7 +303,7 @@ function FermerTexteJack(){
     >
     </a-text>
 
-    <a-box id="boxLink" color="red" depth="20" height="3" width="15" position="-3.010 1.6 -38.769" visible="false"
+    <a-box id="boxLink" color="red" depth="15" height="3" width="15" position="-3.010 1.6 -38.769" visible="false"
     emit-when-near=" event: showTextLink; eventFar: hideTextLink" 
     sound="src: #linkScream;  on:showTextLink;  volume: 1; refDistance: 1; rolloffFactor: 1;"  
     @showTextLink=" OpenTextLink()"
