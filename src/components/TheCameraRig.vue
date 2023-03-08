@@ -50,8 +50,7 @@
           cameraRig: #camera-rig;
           teleportOrigin: #head;
           collisionEntities: [data-role='nav-mesh'];
-          snapTurn: false;
-        "
+          snapTurn: false;"
       ></a-entity>
 
       <a-entity

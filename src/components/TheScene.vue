@@ -131,6 +131,13 @@ function stopKnight(){
   knighty.components.sound.stopSound();
 }
 
+function TPTimeOut(){
+  document.querySelector("#hand-left").setAttribute("blink-controls", "enabled", false);
+  setTimeout(() => {
+    document.querySelector("#hand-left").setAttribute("blink-controls", "enabled", true);
+  }, 500);
+}
+
 
 </script>
 
@@ -427,6 +434,7 @@ function stopKnight(){
       scale="1 0.8 1"    
       clickable
       teleport-camera-rig="x: 8; y: -200; z: -54;"
+      @click="TPTimeOut()"
     >  
     </a-entity>
 
@@ -459,6 +467,7 @@ function stopKnight(){
       scale="1 0.8 1"    
       clickable
       teleport-camera-rig="x: 2; y:-95.5; z: -38;"
+      @click="TPTimeOut()"
     >   
     </a-entity>
 
@@ -501,6 +510,7 @@ function stopKnight(){
       scale="0.18 0.18 0.18"
       clickable
       teleport-camera-rig="x:-0.068; y:0.01; z:-32.889;"
+      @click="TPTimeOut()"
     >  
     </a-entity>
 
@@ -525,6 +535,7 @@ function stopKnight(){
         tu pourras partir en me cliquant dessus"
         color="black" 
         teleport-camera-rig="x:-0.068; y:0.01; z:-32.889;"
+        @click="TPTimeOut()"
     >
     </a-text>
 
@@ -554,6 +565,7 @@ function stopKnight(){
       scale="1 1 1"
       clickable
       teleport-camera-rig="x:147.042; y:-200; z:-70.050;"
+      @click="TPTimeOut()"
     >  
     </a-entity>
 
@@ -567,6 +579,7 @@ function stopKnight(){
         color="white" 
         clickable
       teleport-camera-rig="x:147.042; y:-200; z:-70.050;"
+      @click="TPTimeOut()"
     >
     </a-text>
 
@@ -646,6 +659,7 @@ function stopKnight(){
         color="black" 
         clickable
         teleport-camera-rig="x:-0.068; y:0.01; z:-32.889;"
+        @click="TPTimeOut()"
     >
     </a-text>
 
@@ -657,6 +671,7 @@ function stopKnight(){
       scale="0.20 0.200 0.090"  
       clickable
         teleport-camera-rig="x:-0.068; y:0.01; z:-32.889;"
+        @click="TPTimeOut()"
     >  
     </a-entity>
 
