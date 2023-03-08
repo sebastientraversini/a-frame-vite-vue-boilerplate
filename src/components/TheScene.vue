@@ -132,8 +132,10 @@ function stopKnight(){
 }
 
 function TPTimeOut(){
+  console.log("test")
   document.querySelector("#hand-left").setAttribute("blink-controls", "enabled", false);
   setTimeout(() => {
+    console.log("test222")
     document.querySelector("#hand-left").setAttribute("blink-controls", "enabled", true);
   }, 500);
 }
